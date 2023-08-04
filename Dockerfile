@@ -5,7 +5,7 @@ RUN apt-get update && apt-get upgrade -y
 
 # Install system utils
 RUN apt-get install -y apt-utils software-properties-common
-RUN apt-get install -y iputils-ping nmap netcat
+RUN apt-get install -y iputils-ping nmap netcat-traditional
 RUN apt-get install -y vim wget curl git
 
 # Install TOR
