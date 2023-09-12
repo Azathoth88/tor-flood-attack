@@ -77,28 +77,28 @@ Launching this script is fairly straight forward - clone the repository, navigat
 
 Clone this repository
 ```shell script
-git clone https://github.com/JPLeoRX/tor-flood-attack.git
+git clone https://github.com/Azathoth88/tor-flood-attack.git
 cd tor-flood-attack
 ```
 
 Start the containers with scripts via:
 ```shell script
-docker-compose up --build -d
+docker compose up --build -d
 ```
 
 Connect to logs to monitor what's going on inside your containers:
 ```shell script
-docker-compose logs -f -t
+docker compose logs -f -t
 ```
 
 Or in one command:
 ```shell script
-docker-compose up --build -d && docker-compose logs -f -t
+docker compose up --build -d && docker compose logs -f -t
 ```
 
 To stop and kill all containers:
 ```shell script
-docker-compose down
+docker compose down
 ```
 
 # Side-note: Running with another VPN
