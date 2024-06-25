@@ -83,6 +83,8 @@ cd tor-flood-attack
 
 Start the containers with scripts via:
 ```shell script
+docker-compose up
+or
 docker compose up --build -d
 ```
 
