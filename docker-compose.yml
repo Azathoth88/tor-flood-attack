@@ -6,35 +6,39 @@ services:
       dockerfile: Dockerfile
     environment:
       # Source from where we can load targets
-      # Either a local file, or a controller endpoint
+      # Either file or url
       TARGETS_MODE: url
+      # example for file.
+      #TARGETS_FILE: targets.txt 
       TARGETS_FILE: /app/targets.txt
-      TARGETS_URL: http://68.183.43.171:9000/targets
-
+      # Using targets.txt with .json
+      TARGETS_URL: http://192.168.1.21/targets.txt
+      
       # How many cycles (epochs) of attacks should be performed
       # This value can be ignored, you can control the attack by stopping docker-compose at any time
       NUMBER_OF_EPOCHS: 100
-
+            
       # Min/max values that determine how many requests can be simultaneously sent to a single URL
       # Actual number of requests is always randomly generated, bound between these two numbers
-      PARALLEL_SINGLE_URL_MIN_REQUESTS: 200
-      PARALLEL_SINGLE_URL_MAX_REQUESTS: 700
-
+      PARALLEL_SINGLE_URL_MIN_REQUESTS: 5000
+      PARALLEL_SINGLE_URL_MAX_REQUESTS: 17000
+      
       # Should we use TOR proxy or free VPN proxy? (0 - no, 1 - yes)
       # Obviously do not set them both to 1, this will make everything crash
       # Set them both to 0 if you don't want to use any proxy
       #
       # Prefer free VPN proxy when running on servers with low replicas count (less than 5)
       # Also lower parallel single url requests for free vpn
-      ENABLE_TOR_PROXY: 0
+      ENABLE_TOR_PROXY: 1
       ENABLE_FREE_PROXY: 0
-
+      
+      
       # How often should new proxy identity be generated? Default value - every 6 batches of requests (every 6 URLs)
       # Use 0 or -1 to disable IP change
       TOR_PROXY_IP_CHANGE_FREQUENCY: 6
       FREE_PROXY_IP_CHANGE_FREQUENCY: 6
     deploy:
-      # How scaled this attack is, how many replicas of this container should be deployed
-      replicas: 12
+      replicas: 1
       restart_policy:
-        condition: any
+      # For troubleshooting use condition: none
+        condition: any 
