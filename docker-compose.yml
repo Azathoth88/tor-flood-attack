@@ -1,9 +1,13 @@
 version: "3.9"
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/azathoth88/tor-flood-attack-app:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+      # For troubleshooting use condition: none
+        condition: any     
     environment:
       # Source from where we can load targets
       # Either file or url
@@ -37,8 +41,3 @@ services:
       # Use 0 or -1 to disable IP change
       TOR_PROXY_IP_CHANGE_FREQUENCY: 6
       FREE_PROXY_IP_CHANGE_FREQUENCY: 6
-    deploy:
-      replicas: 1
-      restart_policy:
-      # For troubleshooting use condition: none
-        condition: any 
